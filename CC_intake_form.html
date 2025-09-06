@@ -47,10 +47,208 @@
                 </div>
             </div>
 
-            <!-- Section 2: High-Level Overview -->
+            <!-- Section 2: Travel Preferences -->
             <div class="mb-8 p-6 bg-gray-50 rounded-lg">
-                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Section 2: High-Level Overview</h2>
-                <p class="mb-4 text-gray-600">Please select all the point programs and credit card ecosystems you currently use.</p>
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Section 2: Travel Preferences</h2>
+                <div class="mb-6">
+                    <p class="block text-gray-700 font-medium mb-2">1. Do you typically travel with anyone?</p>
+                    <div class="flex flex-col space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="travel_companions" value="Solo" class="form-radio text-blue-600">
+                            <span class="ml-2 text-gray-700">Solo</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="travel_companions" value="Spouse / Companion" class="form-radio text-blue-600">
+                            <span class="ml-2 text-gray-700">Spouse / Companion</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="travel_companions" value="Family (with kids)" class="form-radio text-blue-600">
+                            <span class="ml-2 text-gray-700">Family (with kids)</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="travel_companions" value="Other" class="form-radio text-blue-600">
+                            <span class="ml-2 text-gray-700">Other</span>
+                        </label>
+                        <input type="text" name="travel_companions_other" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2" placeholder="Please specify 'Other'">
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label for="travelDestinations" class="block text-gray-700 font-medium mb-1">2. Typical travel destinations or dream destinations</label>
+                    <textarea id="travelDestinations" name="travel_destinations" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Japan, Bora Bora, national parks"></textarea>
+                </div>
+
+                <div class="mb-6">
+                    <label for="homeAirport" class="block text-gray-700 font-medium mb-1">3. Home airport</label>
+                    <p class="text-gray-500 text-sm mb-2">e.g., JFK, LAX, ORD</p>
+                    <input type="text" id="homeAirport" name="home_airport" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter airport abbreviation">
+                </div>
+
+                <div class="mb-6">
+                    <label for="loyaltyStatus" class="block text-gray-700 font-medium mb-1">4. Do you have status with any loyalty programs, or do you prefer any? (hotel or airline)</label>
+                    <textarea id="loyaltyStatus" name="loyalty_status" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Delta SkyMiles Silver, Marriott Bonvoy Platinum"></textarea>
+                </div>
+
+                <div class="mb-6">
+                    <p class="block text-gray-700 font-medium mb-2">5. What are your main goals for this "points audit" and coaching call? (Check all that apply)</p>
+                    <div class="flex flex-col space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="goals" value="Redeem points" class="form-checkbox text-blue-600 rounded">
+                            <span class="ml-2 text-gray-700">Redeem points I already have</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="goals" value="Unlock perks" class="form-checkbox text-blue-600 rounded">
+                            <span class="ml-2 text-gray-700">Unlock hidden/unused credit card and travel perks</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="goals" value="Book trips" class="form-checkbox text-blue-600 rounded">
+                            <span class="ml-2 text-gray-700">Book upcoming trips with miles/points/perks</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="goals" value="Learn to earn" class="form-checkbox text-blue-600 rounded">
+                            <span class="ml-2 text-gray-700">Learn how to earn more points in the future</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" name="goals" value="Other" class="form-checkbox text-blue-600 rounded" onchange="toggleOtherGoal(this)">
+                            <span class="ml-2 text-gray-700">Other (please specify)</span>
+                        </label>
+                        <input type="text" name="goals_other" id="otherGoal" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mt-2" placeholder="Please specify 'Other goal'">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Card Overview -->
+            <div class="mb-8 p-6 bg-gray-50 rounded-lg">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Section 3: Card Overview</h2>
+                <p class="mb-4 text-gray-600">Please select all the credit cards you currently have. (Check all that apply)</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Amex Platinum" class="rounded text-blue-600">
+                        <span class="text-gray-700">Amex Platinum</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Amex Gold" class="rounded text-blue-600">
+                        <span class="text-gray-700">Amex Gold</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Amex Green" class="rounded text-blue-600">
+                        <span class="text-gray-700">Amex Green</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Chase Sapphire Preferred" class="rounded text-blue-600">
+                        <span class="text-gray-700">Chase Sapphire Preferred</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Chase Sapphire Reserve" class="rounded text-blue-600">
+                        <span class="text-gray-700">Chase Sapphire Reserve</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Chase Freedom Flex" class="rounded text-blue-600">
+                        <span class="text-gray-700">Chase Freedom Flex</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Chase Freedom Unlimited" class="rounded text-blue-600">
+                        <span class="text-gray-700">Chase Freedom Unlimited</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Capital One Venture X" class="rounded text-blue-600">
+                        <span class="text-gray-700">Capital One Venture X</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Capital One Venture" class="rounded text-blue-600">
+                        <span class="text-gray-700">Capital One Venture</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Capital One Savor" class="rounded text-blue-600">
+                        <span class="text-gray-700">Capital One Savor</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Citi Premier" class="rounded text-blue-600">
+                        <span class="text-gray-700">Citi Premier</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Citi Double Cash" class="rounded text-blue-600">
+                        <span class="text-gray-700">Citi Double Cash</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Bilt Mastercard" class="rounded text-blue-600">
+                        <span class="text-gray-700">Bilt Mastercard</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Delta SkyMiles Platinum" class="rounded text-blue-600">
+                        <span class="text-gray-700">Delta SkyMiles Platinum</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="United Explorer Card" class="rounded text-blue-600">
+                        <span class="text-gray-700">United Explorer Card</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Marriott Bonvoy Boundless" class="rounded text-blue-600">
+                        <span class="text-gray-700">Marriott Bonvoy Boundless</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="World of Hyatt Credit Card" class="rounded text-blue-600">
+                        <span class="text-gray-700">World of Hyatt Credit Card</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Hilton Honors Surpass" class="rounded text-blue-600">
+                        <span class="text-gray-700">Hilton Honors Surpass</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="IHG Rewards Club Premier" class="rounded text-blue-600">
+                        <span class="text-gray-700">Chase IHG Rewards Club Premier</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="American Airlines AAdvantage" class="rounded text-blue-600">
+                        <span class="text-gray-700">Citi American Airlines AAdvantage</span>
+                    </label>
+
+                    <!-- New Cash Back Cards added here -->
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Discover It" class="rounded text-blue-600">
+                        <span class="text-gray-700">Discover It Cash Back</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Capital One Quicksilver" class="rounded text-blue-600">
+                        <span class="text-gray-700">Capital One Quicksilver Cash Rewards Card</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Amazon Prime Rewards Visa" class="rounded text-blue-600">
+                        <span class="text-gray-700">Amazon Prime Rewards Visa Signature Card</span>
+                    </label>
+
+                    <!-- Business Cards -->
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Chase Ink Business Preferred" class="rounded text-blue-600">
+                        <span class="text-gray-700">Chase Ink Business Preferred</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Chase Ink Business Unlimited" class="rounded text-blue-600">
+                        <span class="text-gray-700">Chase Ink Business Unlimited</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Amex Business Platinum" class="rounded text-blue-600">
+                        <span class="text-gray-700">Amex Business Platinum</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Amex Business Gold" class="rounded text-blue-600">
+                        <span class="text-gray-700">Amex Business Gold</span>
+                    </label>
+                    <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                        <input type="checkbox" name="credit_cards" value="Capital One Spark Miles for Business" class="rounded text-blue-600">
+                        <span class="text-gray-700">Capital One Spark Miles for Business</span>
+                    </label>
+                    <div class="mt-4 w-full">
+                        <label for="otherCards" class="block text-gray-700 font-medium mb-1">Other / Unlisted Cards</label>
+                        <textarea id="otherCards" name="other_cards" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Discover It, Barclays AAdvantage"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: High-Level Overview (formerly Section 4) -->
+            <div class="mb-8 p-6 bg-gray-50 rounded-lg">
+                <h2 class="text-2xl font-semibold mb-4 text-gray-700">Section 4: High-Level Overview</h2>
+                <p class="mb-4 text-gray-600">Please select all the point programs and credit card ecosystems you currently use. This will reveal additional questions below.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- Checkbox List -->
                     <label class="flex items-center space-x-2 cursor-pointer p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -126,9 +324,9 @@
 
             <!-- Detailed Sections (Initially Hidden) -->
             <div id="dynamicSections" class="space-y-8">
-                <!-- Section 3: American Express Details -->
+                <!-- Section 5: American Express Details -->
                 <div id="amex-section" class="form-section p-6 bg-blue-50 border border-blue-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-blue-800">Section 3: American Express Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-blue-800">Section 5: American Express Details</h2>
                     <div class="mb-4">
                         <label for="amexPoints" class="block text-gray-700 font-medium mb-1">Approximately how many American Express Membership Rewards points do you currently have?</label>
                         <input type="number" id="amexPoints" name="amex_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter number of points">
@@ -139,9 +337,9 @@
                     </div>
                 </div>
 
-                <!-- Section 4: Chase Details -->
+                <!-- Section 6: Chase Details -->
                 <div id="chase-section" class="form-section p-6 bg-green-50 border border-green-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-green-800">Section 4: Chase Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-green-800">Section 6: Chase Details</h2>
                     <div class="mb-4">
                         <label for="chasePoints" class="block text-gray-700 font-medium mb-1">Approximately how many Chase Ultimate Rewards points do you currently have?</label>
                         <input type="number" id="chasePoints" name="chase_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="Enter number of points">
@@ -153,9 +351,9 @@
                 </div>
 
                 <!-- Add more dynamic sections here for each program, following the same pattern -->
-                <!-- Section 5: Capital One Details -->
+                <!-- Section 7: Capital One Details -->
                 <div id="capitalone-section" class="form-section p-6 bg-gray-100 border border-gray-300 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 5: Capital One Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 7: Capital One Details</h2>
                     <div class="mb-4">
                         <label for="capitalonePoints" class="block text-gray-700 font-medium mb-1">Approximately how many Capital One Venture Miles do you currently have?</label>
                         <input type="number" id="capitalonePoints" name="capitalone_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="Enter number of points">
@@ -165,9 +363,9 @@
                         <textarea id="capitaloneCards" name="capitalone_cards" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="e.g., Capital One Venture X Rewards Credit Card"></textarea>
                     </div>
                 </div>
-                <!-- Section 6: Citi Details -->
+                <!-- Section 8: Citi Details -->
                 <div id="citi-section" class="form-section p-6 bg-yellow-50 border border-yellow-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-yellow-800">Section 6: Citi Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-yellow-800">Section 8: Citi Details</h2>
                     <div class="mb-4">
                         <label for="citiPoints" class="block text-gray-700 font-medium mb-1">Approximately how many Citi ThankYou Points do you currently have?</label>
                         <input type="number" id="citiPoints" name="citi_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="Enter number of points">
@@ -177,9 +375,9 @@
                         <textarea id="citiCards" name="citi_cards" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500" placeholder="e.g., Citi Premier Card"></textarea>
                     </div>
                 </div>
-                <!-- Section 7: Bilt Rewards Details -->
+                <!-- Section 9: Bilt Rewards Details -->
                 <div id="bilt-section" class="form-section p-6 bg-indigo-50 border border-indigo-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-indigo-800">Section 7: Bilt Rewards Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-indigo-800">Section 9: Bilt Rewards Details</h2>
                     <div class="mb-4">
                         <label for="biltPoints" class="block text-gray-700 font-medium mb-1">Approximately how many Bilt Rewards points do you currently have?</label>
                         <input type="number" id="biltPoints" name="bilt_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter number of points">
@@ -189,102 +387,108 @@
                         <textarea id="biltCards" name="bilt_cards" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g., Bilt Mastercard"></textarea>
                     </div>
                 </div>
-                <!-- Section 8: Marriott Bonvoy Details -->
+                <!-- Section 10: Marriott Bonvoy Details -->
                 <div id="marriott-section" class="form-section p-6 bg-purple-50 border border-purple-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-purple-800">Section 8: Marriott Bonvoy Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-purple-800">Section 10: Marriott Bonvoy Details</h2>
                     <div class="mb-4">
                         <label for="marriottPoints" class="block text-gray-700 font-medium mb-1">Approximately how many Marriott Bonvoy points do you currently have?</label>
                         <input type="number" id="marriottPoints" name="marriott_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter number of points">
                     </div>
                     </div>
-                <!-- Section 9: Hilton Honors Details -->
+                <!-- Section 11: Hilton Honors Details -->
                 <div id="hilton-section" class="form-section p-6 bg-gray-50 border border-gray-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 9: Hilton Honors Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 11: Hilton Honors Details</h2>
                     <div class="mb-4">
                         <label for="hiltonPoints" class="block text-gray-700 font-medium mb-1">Approximately how many Hilton Honors points do you currently have?</label>
                         <input type="number" id="hiltonPoints" name="hilton_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="Enter number of points">
                     </div>
                 </div>
-                <!-- Section 10: World of Hyatt Details -->
+                <!-- Section 12: World of Hyatt Details -->
                 <div id="hyatt-section" class="form-section p-6 bg-red-50 border border-red-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-red-800">Section 10: World of Hyatt Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-red-800">Section 12: World of Hyatt Details</h2>
                     <div class="mb-4">
                         <label for="hyattPoints" class="block text-gray-700 font-medium mb-1">Approximately how many World of Hyatt points do you currently have?</label>
                         <input type="number" id="hyattPoints" name="hyatt_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter number of points">
                     </div>
                 </div>
-                <!-- Section 11: IHG Details -->
+                <!-- Section 13: IHG Details -->
                 <div id="ihg-section" class="form-section p-6 bg-teal-50 border border-teal-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-teal-800">Section 11: IHG Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-teal-800">Section 13: IHG Details</h2>
                     <div class="mb-4">
                         <label for="ihgPoints" class="block text-gray-700 font-medium mb-1">Approximately how many IHG One Rewards points do you currently have?</label>
                         <input type="number" id="ihgPoints" name="ihg_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500" placeholder="Enter number of points">
                     </div>
                 </div>
-                <!-- Section 12: American AAdvantage Details -->
+                <!-- Section 14: American AAdvantage Details -->
                 <div id="american-section" class="form-section p-6 bg-blue-50 border border-blue-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-blue-800">Section 12: American AAdvantage Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-blue-800">Section 14: American AAdvantage Details</h2>
                     <div class="mb-4">
                         <label for="americanPoints" class="block text-gray-700 font-medium mb-1">Approximately how many American Airlines AAdvantage miles do you currently have?</label>
                         <input type="number" id="americanPoints" name="american_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter number of miles">
                     </div>
                 </div>
-                <!-- Section 13: Delta SkyMiles Details -->
+                <!-- Section 15: Delta SkyMiles Details -->
                 <div id="delta-section" class="form-section p-6 bg-gray-50 border border-gray-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 13: Delta SkyMiles Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 15: Delta SkyMiles Details</h2>
                     <div class="mb-4">
                         <label for="deltaPoints" class="block text-gray-700 font-medium mb-1">Approximately how many Delta SkyMiles do you currently have?</label>
                         <input type="number" id="deltaPoints" name="delta_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="Enter number of miles">
                     </div>
                 </div>
-                <!-- Section 14: United MileagePlus Details -->
+                <!-- Section 16: United MileagePlus Details -->
                 <div id="united-section" class="form-section p-6 bg-purple-50 border border-purple-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-purple-800">Section 14: United MileagePlus Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-purple-800">Section 16: United MileagePlus Details</h2>
                     <div class="mb-4">
                         <label for="unitedPoints" class="block text-gray-700 font-medium mb-1">Approximately how many United MileagePlus miles do you currently have?</label>
                         <input type="number" id="unitedPoints" name="united_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500" placeholder="Enter number of miles">
                     </div>
                 </div>
-                <!-- Section 15: Southwest Rapid Rewards Details -->
+                <!-- Section 17: Southwest Rapid Rewards Details -->
                 <div id="southwest-section" class="form-section p-6 bg-orange-50 border border-orange-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-orange-800">Section 15: Southwest Rapid Rewards Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-orange-800">Section 17: Southwest Rapid Rewards Details</h2>
                     <div class="mb-4">
                         <label for="southwestPoints" class="block text-gray-700 font-medium mb-1">Approximately how many Southwest Rapid Rewards points do you currently have?</label>
                         <input type="number" id="southwestPoints" name="southwest_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Enter number of points">
                     </div>
                 </div>
-                <!-- Section 16: Flying Blue Details -->
+                <!-- Section 18: Flying Blue Details -->
                 <div id="flyingblue-section" class="form-section p-6 bg-gray-50 border border-gray-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 16: Flying Blue Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 18: Flying Blue Details</h2>
                     <div class="mb-4">
                         <label for="flyingbluePoints" class="block text-gray-700 font-medium mb-1">Approximately how many Flying Blue miles do you currently have?</label>
                         <input type="number" id="flyingbluePoints" name="flyingblue_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="Enter number of miles">
                     </div>
                 </div>
-                <!-- Section 17: Alaska Airlines Details -->
+                <!-- Section 19: Alaska Airlines Details -->
                 <div id="alaska-section" class="form-section p-6 bg-sky-50 border border-sky-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-sky-800">Section 17: Alaska Airlines Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-sky-800">Section 19: Alaska Airlines Details</h2>
                     <div class="mb-4">
                         <label for="alaskaPoints" class="block text-gray-700 font-medium mb-1">Approximately how many Alaska Airlines Mileage Plan miles do you currently have?</label>
                         <input type="number" id="alaskaPoints" name="alaska_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="Enter number of miles">
                     </div>
                 </div>
-                <!-- Section 18: British Airways Details -->
+                <!-- Section 20: British Airways Details -->
                 <div id="britishairways-section" class="form-section p-6 bg-red-50 border border-red-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-red-800">Section 18: British Airways Details</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-red-800">Section 20: British Airways Details</h2>
                     <div class="mb-4">
                         <label for="britishairwaysPoints" class="block text-gray-700 font-medium mb-1">Approximately how many British Airways Executive Club (Avios) do you currently have?</label>
                         <input type="number" id="britishairwaysPoints" name="britishairways_points" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter number of Avios">
                     </div>
                 </div>
-                <!-- Section 19: Other Cards & Points -->
+                <!-- Section 21: Other Cards & Points -->
                 <div id="other-section" class="form-section p-6 bg-gray-50 border border-gray-200 rounded-lg">
-                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 19: Other Cards & Points</h2>
+                    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Section 21: Other Cards & Points</h2>
                     <div>
                         <label for="otherDetails" class="block text-gray-700 font-medium mb-1">Please list the name and approximate balance for any other credit cards, points, or miles you have.</label>
-                        <textarea id="otherDetails" name="other_details" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="e.g., Discover It, 15,000 points"></textarea>
+                        <textarea id="otherDetails" name="other_details" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500" placeholder="e.g., Discover It, Barclays AAdvantage"></textarea>
                     </div>
                 </div>
+            </div>
+
+            <!-- "Anything else" text box -->
+            <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                <label for="anythingElse" class="block text-gray-700 font-medium mb-1">Anything else that would be helpful to mention?</label>
+                <textarea id="anythingElse" name="anything_else" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 'I plan to get a new credit card in the next 6 months' or 'I travel for work and am on the road 50% of the time'"></textarea>
             </div>
 
             <button type="submit" class="w-full mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
